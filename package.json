@@ -1,0 +1,42 @@
+{
+  "name": "imdbmoviesuggestor",
+  "version": "1.0.0",
+  "description": "",
+  "main": "src/index.js",
+  "type": "module",
+  "scripts": {
+    "lint": "eslint --ext .ts src",
+    "start": "npx nodemon",
+    "prettier": "prettier --write --ignore-unknown '**/*.{ts,js,json,md}'",
+    "test": "jest --coverage --max-workers=50% --detectOpenHandles",
+    "prisma:migrate": "npx prisma generate && npx prisma migrate diff --from-schema-datamodel ./prisma/schema.prisma --to-schema-datasource ./prisma/schema.prisma  --script > ./prisma/down-migrations/down.sql && npx prisma migrate dev && mv ./prisma/down-migrations/down.sql prisma/migrations/\"$(ls -At1 prisma/migrations/ | head -n 1)\"",
+    "prisma:down:migrate": "npx prisma db execute --file {PATH_TO_DOWN_MIGRATION} --schema prisma/schema.prisma && npx prisma migrate resolve --rolled-back {NAME_OF_THE_MIGRATION}"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rribeiro97/imdbMovieSuggestor.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/rribeiro97/imdbMovieSuggestor/issues"
+  },
+  "homepage": "https://github.com/rribeiro97/imdbMovieSuggestor#readme",
+  "dependencies": {
+    "@prisma/client": "^5.11.0",
+    "dotenv": "^16.4.5",
+    "express": "^4.19.2"
+  },
+  "devDependencies": {
+    "@types/express": "^4.17.21",
+    "@types/node": "^20.12.5",
+    "axios": "^1.6.8",
+    "nodemon": "^3.1.0",
+    "prisma": "^5.11.0",
+    "ts-node": "^10.9.2",
+    "tsx": "^4.7.2",
+    "typescript": "^5.4.4",
+    "zod": "^3.22.4"
+  }
+}
